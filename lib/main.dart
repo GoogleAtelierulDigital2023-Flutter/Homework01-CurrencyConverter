@@ -38,9 +38,9 @@ class CurrencyConvertor extends StatefulWidget {
 }
 
 class CurrencyConvertorState extends State<CurrencyConvertor> {
-  final _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
-  static const _exchangeRate = 4.9;
+  static const double _exchangeRate = 4.9;
 
   bool _isError = false;
   double _exchangeResult = 0;
@@ -49,8 +49,7 @@ class CurrencyConvertorState extends State<CurrencyConvertor> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Image.asset('assets/images/bani.jpg'),
           TextField(
             controller: _textController,
@@ -63,7 +62,7 @@ class CurrencyConvertorState extends State<CurrencyConvertor> {
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]|\.')),
             ],
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            onChanged: (value) {
+            onChanged: (_) {
               setState(
                 () {
                   _isError = false;
@@ -73,7 +72,7 @@ class CurrencyConvertorState extends State<CurrencyConvertor> {
           ),
           ElevatedButton(
             onPressed: () {
-              final inputNumber = double.tryParse(_textController.text);
+              final double? inputNumber = double.tryParse(_textController.text);
 
               setState(() {
                 if (inputNumber == null || inputNumber == 0) {
